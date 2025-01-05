@@ -46,7 +46,11 @@
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>NSLocationWhenInUseUsageDescription</key>
-<string>This app needs access to your location to show your position on the map.</string>
+<string>We need your location to show you the route.</string>
+<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+<string>We need your location to provide navigation.</string>
+<key>NSLocationAlwaysUsageDescription</key>
+<string>We need your location to enhance the app experience.</string>
 
 </dict>
 </plist>
