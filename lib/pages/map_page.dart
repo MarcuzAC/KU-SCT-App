@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, avoid_print, no_leading_underscores_for_local_identifiers
+// ignore_for_file: prefer_const_constructors, no_leading_underscores_for_local_identifiers, avoid_print
 
 import 'dart:convert';
 import 'package:flutter/material.dart';
@@ -23,6 +23,8 @@ class _MapPageState extends State<MapPage> {
   static const LatLng linga = LatLng(-13.063228, 33.438791);
 
   LatLng? currentP;
+  String? distance;
+  String? duration;
 
   final Set<Marker> _markers = {};
   final Set<Polyline> _polylines = {};
@@ -86,7 +88,11 @@ class _MapPageState extends State<MapPage> {
             routeCoords.add(LatLng(lat, lng));
           }
 
+          // Extract distance and duration
+          final leg = route['legs'][0];
           setState(() {
+            distance = leg['distance']['text'];
+            duration = leg['duration']['text'];
             _polylines.add(
               Polyline(
                 polylineId: PolylineId('route'),
@@ -185,6 +191,41 @@ class _MapPageState extends State<MapPage> {
                         Text('Getting your location...'),
                       ],
                     ),
+                  ),
+                ),
+              ),
+            ),
+          if (distance != null && duration != null)
+            Positioned(
+              bottom: 20,
+              left: 16,
+              right: 16,
+              child: Card(
+                elevation: 8.0,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15.0),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Distance: $distance',
+                        style: const TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      Text(
+                        'Estimated Travel Time: $duration',
+                        style: const TextStyle(
+                          fontSize: 16,
+                          color: Colors.green,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
