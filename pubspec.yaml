@@ -30,9 +30,11 @@ dev_dependencies:
   flutter_launcher_icons: ^0.14.2
 
 flutter_launcher_icons:
-  android: true
+  android: "launcher_icon"
   ios: true
-  image_path: assets/icon.png
+  image_path: "assets/images/icon.png"
+  min_sdk_android: 21
+
 
 flutter:
   uses-material-design: true
